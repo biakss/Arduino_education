@@ -1,0 +1,120 @@
+<html>
+<head>
+  <title>Урок 4. Подключение LCD1602 по I2C к Ардуино - Урок для Arduino</title>
+  <basefont face="Segoe UI" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="Evernote Windows/308555 (ru-RU, MWS); Windows/10.0.0 (Win64);"/>
+  <style>
+    body, td {
+      font-family: Segoe UI;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="119702"/>
+<h1>Урок 4. Подключение LCD1602 по I2C к Ардуино - Урок для Arduino</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>Метки:</b></td><td><i>Ar_lesson, Arduino</i></td></tr>
+<tr><td><b>Источник:</b></td><td><a href="http://lesson.iarduino.ru/page/urok-4-podklyuchenie-lcd1602-po-i2c-k-arduino/"><i>http://lesson.iarduino.ru/page/urok-4-podklyuchenie-lcd1602-po-i2c-k-arduino/</i></a></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div style="position:relative;"><div style="padding-top:20px;padding-bottom:20px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(238, 238, 238);border-bottom-color:rgb(238, 238, 238);background-color:rgb(255, 255, 255);position:relative;overflow-x:auto;overflow-y:auto;font-family:Arial,Helvetica,Verdana,Tahoma,sans-serif;font-size:14px;line-height:22.4px;">		
+					<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">К сожалению стандартная схема подключения расмотренная в предыдущих уроках не всегда удобна, так как занимает как минимум 6 цифровых выходов на арудине.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 4. Подключение LCD1602 по I2C к Ардуино _files/Image.png" type="image/png" data-filename="Image.png" alt="" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:500px;height:203px;"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"> В этом уроке мы рассмотрим способ как это можно обойти и использовать только два аналоговых выхода.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Нам понадобится дополнительный модуль <a href="http://iarduino.ru/shop/Displei/1602-lcd-konvertor-v-spi-port.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">1602 LCD конвертор в IIC/I2C</a>. Он припаивается к нашему дисплею как видно на фото ниже.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 4. Подключение LCD1602 по I2C к Ардуино _files/Image [1].png" type="image/png" data-filename="Image.png" alt="" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:500px;height:375px;"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">И подключается к ардуине следующим образом
+</p>
+<table align="left" border="1" cellpadding="1" cellspacing="1" style="border-spacing:1px 1px;border-collapse:collapse;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;margin-bottom:15px;font-size:14px;line-height:22.4px;width:638px;">
+<tbody>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Arduino Mega
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"> Arduino Uno
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"> LCD i2c
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"> Цвет проводов на фото
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">GND
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">GND
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">GND
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Черный
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">5V
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"> 5V
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">VCC
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Красный
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">20 (SDA)
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">A4
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">SDA
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Коричневый
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">21(SCL)
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">A5
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">SCL
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Белый
+	</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 4. Подключение LCD1602 по I2C к Ардуино _files/Image [2].png" type="image/png" data-filename="Image.png" alt="" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:500px;height:375px;"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Этот способ подключения работает только со специально библиотекой, скачать библиотеку можно по ссылке (<a href="http://iarduino.ru/file/134.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">LiquidCrystal_I2C1602V1 Библиотека</a>). Установите данную библиотеку.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Код программы:</strong>
+</p>
+<pre style="font-family:Menlo,Monaco,monospace,sans-serif;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;padding-top:10px;padding-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(51, 51, 51);overflow-x:auto;overflow-y:auto;font-size:14px;line-height:22.4px;color:rgb(255, 255, 255);"><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;Wire.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> 
+</span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;LiquidCrystal_I2C.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">LiquidCrystal_I2C</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">0x27</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">16</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">2</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">  </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Устанавливаем дисплей</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> setup</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">init</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">                     
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">backlight</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Включаем подсветку дисплея</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">print</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&quot;iarduino.ru&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">setCursor</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">8</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">1</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">print</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&quot;LCD 1602&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> loop</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Устанавливаем курсор на вторую строку и нулевой символ.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">setCursor</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">0</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">1</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Выводим на экран количество секунд с момента запуска ардуины</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  lcd</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">print</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">millis</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()/</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">1000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span></pre>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Видео:</strong>
+</p>
+				</div></div></span>
+</div></body></html> 

@@ -1,0 +1,184 @@
+<html>
+<head>
+  <title>Урок 6. Arduino считываем метки (RFID-модуль RC522) - Урок для Arduino</title>
+  <basefont face="Segoe UI" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="Evernote Windows/308555 (ru-RU, MWS); Windows/10.0.0 (Win64);"/>
+  <style>
+    body, td {
+      font-family: Segoe UI;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="119695"/>
+<h1>Урок 6. Arduino считываем метки (RFID-модуль RC522) - Урок для Arduino</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>Метки:</b></td><td><i>Ar_lesson, RFID</i></td></tr>
+<tr><td><b>Источник:</b></td><td><a href="http://lesson.iarduino.ru/page/urok-6-arduino-schityvaem-metki-rfid-modul-rc522/"><i>http://lesson.iarduino.ru/page/urok-6-arduino-schityvaem-metki-rfid-modul-rc522/</i></a></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div style="position:relative;"><div style="padding-top:20px;padding-bottom:20px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(238, 238, 238);border-bottom-color:rgb(238, 238, 238);background-color:rgb(255, 255, 255);position:relative;overflow-x:auto;overflow-y:auto;font-family:Arial,Helvetica,Verdana,Tahoma,sans-serif;font-size:14px;line-height:22.4px;">		
+					<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Подключение к Arduino:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Для начала необходимо установить библиотеку <a href="http://iarduino.ru/file/191.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">RFID Library for MFRC522</a>.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Контакты на модуле RFID-модуль RC522 необходимо подключить к Ардуине. Для подключения удобно использовать <a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-papa-mama-20sm.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">провода папа-мама</a>.
+</p><img src="Урок 6. Arduino считываем метки (RFID-модуль _files/Image.png" type="image/png" data-filename="Image.png" alt="" height="329" style="max-width:600px;width:327px;height:329px;display:block;" width="327"/>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Описание контактов у RFID-модуля RC522:
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>VCC — Питание. Необходимо 3.3V;</li>
+	<li>RST — Reset. Линия сброса. Ни в коем случае не подключать к пину RESET на CraftDuino! Данный пин цепляется на цифровой порт с PWM;</li>
+	<li>GND — Ground. Земля</li>
+	<li>MISO — Master Input Slave Output — данные от ведомого к ведущему, SPI;</li>
+	<li>MOSI — Master Output Slave Input — данные от ведущего к ведомому, SPI;</li>
+	<li>SCK — Serial Clock — тактовый сигнал, SPI;</li>
+	<li>NSS — Slave Select — выбор ведомого, SPI;</li>
+	<li>IRQ — линия прерываний;</li>
+</ul>
+<table style="border-collapse:collapse;margin-bottom:15px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;font-size:14px;line-height:22.4px;width:638px;">
+<tbody>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><strong>MFRC522</strong>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><strong><a href="http://iarduino.ru/shop/arduino/arduino-uno-r3.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino Uno</a></strong>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><strong><a href="http://iarduino.ru/shop/arduino/arduino-mega-2560-rev3.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino Mega</a></strong>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><strong><a href="http://iarduino.ru/shop/arduino/funduino-nano-3-0.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino Nano v3</a></strong>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><strong><a href="http://iarduino.ru/shop/arduino/arduino-leonardo.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino Leonardo</a>/<a href="http://iarduino.ru/shop/arduino/arduino-micro.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Micro</a></strong>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><strong><a href="http://iarduino.ru/shop/arduino/arduino-pro-micro-5v-16mhz.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino Pro Micro</a></strong>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>RST</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>9</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>5</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>D9</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>RESET/ICSP-5</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>RST</em>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>SDA(SS)</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>10</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>53</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>D10</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>10</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>10</em>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>MOSI  </em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>11 (ICSP-4)</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>51</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>D11</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>ICSP-4</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>16</em>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>MISO  </em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>12 (ICSP-1<strong></strong>)</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>50</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>D12</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>ICSP-1 </em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>14</em>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>SCK</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>13  (ICSP-3)</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>52</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>D13</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>ICSP-3</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>15</em>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>3.3V</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em> 3.3V</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em> 3.3V</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><a href="http://iarduino.ru/shop/Istochniki-pitanija/stabilizator-pitaniya-3-3v-ams1117.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank"><em style="border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">Стабилизатор 3,3В</em></a>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em><a href="http://iarduino.ru/shop/Istochniki-pitanija/stabilizator-pitaniya-3-3v-ams1117.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Стабилизатор 3,3В</a></em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em><a href="http://iarduino.ru/shop/Istochniki-pitanija/stabilizator-pitaniya-3-3v-ams1117.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Стабилизатор 3,3В</a></em>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>GND</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>GND</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>GND</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>GND</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>GND</em>
+	</td>
+	<td style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"><em>GND</em>
+	</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">В комплекте с модулем RFID-RC522 идут две метки, одна в виде пластиковой карточки, а вторая в виде брелка. При необходимости их можно докупить отдельно.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><div></div>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">После того как все будет подключено на модуле будет гореть индикатор, это говорит о том что питание поступает на RFID<span>. Пришло время <span>запустить пробный скетч который находится в библиотеке которую мы установили.  </span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><img src="Урок 6. Arduino считываем метки (RFID-модуль _files/Image [1].png" type="image/png" data-filename="Image.png" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:600px;height:244.65px;"/><span><div></div></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span><div></div></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Необходимо проверить правильность заданных констант:
+</p>
+<pre style="font-family:Menlo,Monaco,monospace,sans-serif;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;padding-top:10px;padding-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(51, 51, 51);overflow-x:auto;overflow-y:auto;font-size:14px;line-height:22.4px;color:rgb(255, 255, 255);"><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#define</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> SS_PIN </span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">10</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#define</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> RST_PIN </span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">9</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Данные константы соответствуют</span></pre>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span>Теперь загружаем скетч в ардуину и включаем <em>Мониторинг последовательного  порта.</em></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span>Подносим метку к ридеру и модуль считает все данные с данной метки, например уникальный идентификатор метки UID. </span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 6. Arduino считываем метки (RFID-модуль _files/Image [2].png" type="image/png" data-filename="Image.png" height="244" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:600px;height:244px;" width="724"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Видео работы RFID-RC522</strong><strong>:</strong>
+</p>
+				</div></div></span>
+</div></body></html> 

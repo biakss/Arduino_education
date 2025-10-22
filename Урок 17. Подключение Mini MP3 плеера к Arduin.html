@@ -1,0 +1,530 @@
+<html>
+<head>
+  <title>Урок 17. Подключение Mini MP3 плеера к Arduino - Урок для Arduino</title>
+  <basefont face="Segoe UI" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="Evernote Windows/308555 (ru-RU, MWS); Windows/10.0.0 (Win64);"/>
+  <style>
+    body, td {
+      font-family: Segoe UI;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="117591"/>
+<h1>Урок 17. Подключение Mini MP3 плеера к Arduino - Урок для Arduino</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>Метки:</b></td><td><i>Ar_lesson, DTMF_Tone</i></td></tr>
+<tr><td><b>Источник:</b></td><td><a href="http://lesson.iarduino.ru/page/urok-17-podklyuchenie-mini-mp3-pleera-k-arduino/"><i>http://lesson.iarduino.ru/page/urok-17-podklyuchenie-mini-mp3-pleera-k-arduino/</i></a></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div style="position:relative;"><div>
+<div style="margin-top:0px;margin-bottom:0px;font-family:&quot;PT Sans Narrow&quot;,Arial,sans-serif;">
+<div style="border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(231, 231, 231);border-bottom-color:rgb(231, 231, 231);width:1264px;background-color:rgb(247, 246, 246);">
+		<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:0px;overflow-x:hidden;overflow-y:hidden;width:960px;">
+			<li style="float:left;list-style-type:none;"><a href="http://iarduino.ru/" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;"> Магазин</a></li>
+			<li style="float:left;list-style-type:none;"><a href="http://lesson.iarduino.ru/" style="color:rgb(102, 102, 102);text-decoration-color:rgb(102, 102, 102);text-decoration-line:none;border-bottom-width:4px;border-bottom-style:solid;border-top-color:rgb(102, 102, 102);border-bottom-color:rgb(103, 193, 148);line-height:37px;background-color:rgb(255, 255, 255);float:left;list-style-type:none;display:block;"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image.png" type="image/png" data-filename="Image.png" style="margin-bottom:-5px;border-top-color:rgb(102, 102, 102);border-bottom-color:rgb(102, 102, 102);opacity:0.6;"/> Уроки</a></li>
+			<li style="float:left;list-style-type:none;"><a href="http://blog.iarduino.ru/" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;"> Блог</a></li>
+			<li style="float:left;list-style-type:none;"><a href="http://wiki.iarduino.ru/" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;"> WiKi</a></li>
+			
+						<li style="float:left;list-style-type:none;"><a href="http://www.youtube.com/channel/UCRfNkq8F8rxmDa3sPoEQv1w" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;" target="_blank">Видео</a></li>
+		</ul>
+</div>
+	<div style="width:960px;overflow-x:hidden;overflow-y:hidden;font-family:&quot;PT Sans Narrow&quot;,Arial,sans-serif;">
+		<div style="text-align:center;">
+			<a href="http://lesson.iarduino.ru/" style="text-decoration-line:none;" title="Уроки arduino на iarduino.ru"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [1].png" type="image/png" data-filename="Image.png" alt="Уроки arduino на iarduino.ru" style="border-top-color:rgb(0, 0, 238);border-bottom-color:rgb(0, 0, 238);text-align:center;height:200px;"/></a>
+		</div>
+	</div>
+		
+
+
+		
+
+	<div style="width:960px;overflow-x:hidden;overflow-y:hidden;">
+<h1 style="font-size:28px;font-weight:400;margin-block-start:;margin-block-end:;margin-top:10px;margin-bottom:10px;padding-top:13px;padding-bottom:13px;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(17, 17, 17);color:rgb(17, 17, 17);transition-duration:1s;z-index:-1;background-color:rgb(240, 242, 222);font-family:&quot;Roboto&quot;;">Урок 17. Подключение Mini MP3 плеера к Arduino</h1>
+	
+		<div style="font-family:Tahoma;float:left;width:250px;">
+			
+	
+		<div style="padding-top:10px;padding-bottom:10px;border-bottom-width:3px;border-bottom-style:solid;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(233, 151, 1);font-size:14px;font-weight:700;color:rgb(255, 255, 255);border-top-left-radius:5px;border-top-right-radius:5px;background-image:linear-gradient(35deg, rgb(255, 165, 0) 0%, rgb(229, 173, 36) 50%, rgb(240, 183, 44) 51%, rgb(244, 191, 63) 100%);">Необходимые детали</div>
+			<div style="background-color:rgb(237, 237, 228);overflow-x:hidden;overflow-y:hidden;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+				<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:10px;margin-bottom:10px;">
+					
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [2].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">890р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/arduino/arduino-uno-r3.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Arduino Uno R3 </a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [3].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">187р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-dlya-breadboard-arduino.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Набор проводов для Breadboard Arduino</a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [4].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">190р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Makety/breadboard-mini.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Breadboard  mini  </a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [5].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">395р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-dlya-bredbordov.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Набор перемычек для Breadboard </a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [6].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">470р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/radioparts/nabor-rezistorov-maxi-600-rezistorov.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Набор резисторов MAXI (600 резисторов)</a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [7].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">590р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Expansion-payments/mini-mp3-proigryvatel.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Mini MP3-плеер</a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [8].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">220р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Raznoe/dinamik-3w-4om.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Динамик 3W 4Ом.</a>
+									</div>
+								</div>
+							</li>
+											
+				
+
+				</ul>
+			</div>
+			<div></div>
+
+						
+
+	</div>
+		
+	
+		<div style="position:relative;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;float:left;width:700px;background-color:rgb(247, 248, 248);">
+			<div style="margin-top:10px;margin-bottom:10px;overflow-x:hidden;overflow-y:hidden;position:relative;">		
+
+				<div style="padding-top:20px;padding-bottom:20px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(238, 238, 238);border-bottom-color:rgb(238, 238, 238);background-color:rgb(255, 255, 255);position:relative;overflow-x:auto;overflow-y:auto;font-family:Arial,Helvetica,Verdana,Tahoma,sans-serif;font-size:14px;line-height:22.4px;">		
+					<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Наверное, часто в ваших проектах возникала необходимость воспроизводить определенный звук или мелодию. Например, по завершению какого-нибудь процесса, или просто звуковое сопровождение. В этом нам поможет <a href="http://iarduino.ru/shop/Expansion-payments/mini-mp3-proigryvatel.html" style="outline-width:1px;outline-style:dotted;outline-color:rgb(17, 85, 204);color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Mini MP3 Проигрыватель</a>, который обладает очень большим потенциалом.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [9].png" type="image/png" data-filename="Image.png" height="381" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:587px;height:381px;" width="587"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">В данный модуль вставляется microSD карточка, на которую предварительно мы можем записать Mp3 композиции, которые, в дальнейшем, сможем воспроизводить с помощью <a href="http://iarduino.ru/shop/Expansion-payments/mini-mp3-proigryvatel.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Mini MP3 Проигрывателя</a>.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Нам понадобится:</strong><div></div>
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li><a href="http://iarduino.ru/shop/arduino/" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino</a></li>
+	<li><a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-dlya-bredbordov.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Перемычки</a> или <a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-dlya-breadboard-arduino.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Набор проводов для макетирования 65 шт.</a></li>
+	<li><a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-papa-mama-20sm.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Провода Папа-Мама</a></li>
+	<li><a href="http://iarduino.ru/shop/Makety/bez_payki/" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Breadboard</a></li>
+	<li><a href="http://iarduino.ru/shop/radioparts/nabor-rezistorov-maxi-600-rezistorov.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Резисторы</a></li>
+	<li><a href="http://iarduino.ru/shop/Expansion-payments/mini-mp3-proigryvatel.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Mini MP3 ПроигрВыход на динамик, со встроенного усилителя до 3Wыватель</a><a href="http://iarduino.ru/shop/Expansion-payments/mini-mp3-proigryvatel.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);"></a> </li>
+	<li><a href="http://iarduino.ru/shop/Raznoe/dinamik-3w-4om.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" title="Купить Динамик 3W 4Ом.">Динамик 3W 4Ом.</a></li>
+</ul>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Для реализации проекта нам необходимо установить библиотеки:<span><div></div></span>
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li><a href="http://iarduino.ru/file/140.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">DFPlayer Mini mp3 Arduino Library V2.0</a></li>
+</ul>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Демонстрация:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [10].png" type="image/png" data-filename="Image.png" height="281" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;margin-bottom:15px;" width="500"/><div></div>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Подготавливаем microSD карточку:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Mini MP3 Проигрыватель <span>может распознавать карты объемом до 32G и файловой системой  FAT16 , FAT32<span>. </span></span>
+</p>
+<ol style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>Для начала нам необходимо подключить карту через катридер к компьютеру и отформатировать карточку. </li>
+	<li>Теперь нам нужно создать папку с названием &quot;<strong><em>mp3</em></strong>&quot;.  <img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [11].png" type="image/png" data-filename="Image.png" alt="" style="max-width:600px;width:600px;height:152.317px;display:block;"/></li>
+	<li>Записать ваши mp3 композиции в данную папку и дать им имена &quot;<em>0001.mp3</em>&quot; , &quot;<em>0002.mp3</em>&quot;,  &quot;<em>0003.mp3</em>&quot;<span> и тд. Так же файл можно называть </span>&quot;<em>0001alla-tratata.mp3</em>&quot; главное, указать в самом начале номер трека в четырех символьном формате.<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [12].png" type="image/png" data-filename="Image.png" alt="" style="max-width:600px;width:600px;height:179.067px;display:block;"/></li>
+</ol>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Описание контактов:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [13].png" type="image/png" data-filename="Image.png" height="202" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:340px;height:202px;" width="340"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><div></div>
+</p>
+<table align="center" border="1" cellspacing="0" style="border-spacing:0px 0px;border-collapse:collapse;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;margin-bottom:15px;font-size:14px;line-height:22.4px;width:638px;" width="750px">
+<tbody>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;width:148.25px;"><strong>Pin Number</strong>
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;width:148.25px;"><strong>Pin Description</strong>
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;width:148.25px;"><strong>Description</strong>
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;width:148.25px;"><strong>Note</strong>
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">1
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">VCC
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Питание
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Питание постоянного тока от 3 до 5 Вольт
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">2
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">RX
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">UART serial input
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">3
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">TX
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">UART serial output
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">4
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">DAC_R
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Audio output right channel
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Выход на усилитель, правый канал
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">5
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">DAC_L
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">Audio output left channel
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">Выход на динамик, со встроенного усилителя до 3W
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">9
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">IO1
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">Trigger port 1
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">Короткое нажатие ||◄ (длительное нажатие - уменьшение громкости)
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">10
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">GND
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">Ground
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:67.2px;">Выход на динамик, со встроенного усилителя до 3W
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">11
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">IO2
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">Trigger port 2
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:89.6px;">Короткое нажатие ►|| (длительное нажатие - увеличение громкости)
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">12
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">ADKEY1
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">AD port 1
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Trigger play first segment
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">13
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">ADKEY2
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">AD port 2
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Trigger play fifth segment
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">14
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">USB
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">USB  DP
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">USB Port
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">15
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">USB-
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">USB- DM
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:40px;">USB Port
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">16
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Busy
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Playing Status
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);height:44.8px;">Low means playingHigh means no
+	</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Модуль имеет сразу два вида выходного сигнала: первый - со встроенным усилителем, а второй вариант - через внешний усилитель например <a href="http://iarduino.ru/shop/Expansion-payments/mini-audio-usilitel-2-3-vt-klassa-d-pam8403.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">УНЧ модуль 2*3 Вт класса D PAM8403</a>. В наших примерах будет рассматриваться вариант со встроенным усилителем.
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>Подключение к усилителю c помощью выходов  <strong><em>DAC_R</em></strong> и <strong><em>DAC_L</em></strong></li>
+	<li>Подключение к динамику напрямую. динамик подключается одним контактом <strong><em>IO1</em></strong><span>, а вторым к <strong><em>IO2</em></strong></span></li>
+</ul><strong><em></em></strong>
+<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Пример 1. Управление с помощью Arduino</h4>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Схема подключения</strong><strong>:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span>Данный Mini MP3 Проигрыватель <span> может быть подключен как обычному Serial<span> порту, так и к виртуальному Serial<span> порту. Это дает возможность arduino подключиться к компьютеру и к mp3 проигрывателю.</span></span></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span><span><span>Подключать удобнее всего с помощью <a href="http://iarduino.ru/shop/Makety/breadboard-mini.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">Breadboard mini</a><span> и <a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-dlya-breadboard-arduino.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">проводков папа-папа</a>. Так же не забудьте подключать Mp3 плеер к  Serial порту с через резисторы на 1 кОм.</span></span></span></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [14].png" type="image/png" data-filename="Image.png" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:600px;height:376px;"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">В результате у вас  должна получиться примерно следующая картина:
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><a href="http://iarduino.ru/img/upload/a196359ed7230f5a3dce56f0eef441ba.jpg" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [15].png" type="image/png" data-filename="Image.png" alt="" height="315" style="margin-top:20px;margin-bottom:20px;border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);max-width:600px;width:487px;height:315px;" width="487"/></a>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Не забудьте установить библиотеку <a href="http://iarduino.ru/file/140.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">Mini mp3 Arduino Library V2.0</a>.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Скетч №1:</strong><span><div></div></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span>Данный пример запустит проигрывание треков и каждые 10 секунд будет переключать на следующий трек.</span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span>Между двумя командами  необходимо делать задержку <strong><em>delay (100);</em></strong><span>  100 миллисекунд, в противном случае некоторые команды могут работать не стабильно.</span></span>
+</p>
+<pre style="font-family:Menlo,Monaco,monospace,sans-serif;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;padding-top:10px;padding-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(51, 51, 51);overflow-x:auto;overflow-y:auto;font-size:14px;line-height:22.4px;color:rgb(255, 255, 255);"><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;SoftwareSerial.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;DFPlayer_Mini_Mp3.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> setup </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">begin</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">9600</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    mp3_set_serial </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">    
+    mp3_set_volume </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">25</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> loop </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">        
+    mp3_next </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Следующий трек</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">10000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// пуза 10 секунд</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span></pre>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><strong>Скетч №2:</strong><span><div></div></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span>В этом примере мы запускаем плеер, он начинает проигрывать композиции целиком одна за другой в случайном порядке. </span></span>
+</p>
+<pre style="font-family:Menlo,Monaco,monospace,sans-serif;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;padding-top:10px;padding-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(51, 51, 51);overflow-x:auto;overflow-y:auto;font-size:14px;line-height:22.4px;color:rgb(255, 255, 255);"><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;SoftwareSerial.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;DFPlayer_Mini_Mp3.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> setup </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">begin</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">9600</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    mp3_set_serial </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">    </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">//set Serial for DFPlayer-mini mp3 module </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  mp3_set_volume </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">25</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// запускаем трек </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  mp3_random_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">  </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Даем команду проигрывать треки в случайной последовательности</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> loop </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">        
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span></pre>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><strong>Скетч №3:</strong><span><div></div></span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span>Для запуска определенной мелодии нужно обязательно задать правильные именна mp3 файлам, которые находятся на флешке как указано в пункте <strong>&quot;</strong><strong><em>Подготавливаем microSD карточку&quot;</em></strong><span>. Вы так же можете записывать файлы в любые папки и с любыми названиями, но их вы не сможете запустить выборочно по команде. <span></span></span></span></span></span>
+</p>
+<pre style="font-family:Menlo,Monaco,monospace,sans-serif;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;padding-top:10px;padding-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(51, 51, 51);overflow-x:auto;overflow-y:auto;font-size:14px;line-height:22.4px;color:rgb(255, 255, 255);"><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;SoftwareSerial.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">#include</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">&lt;DFPlayer_Mini_Mp3.h&gt;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> setup </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">begin</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">9600</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    mp3_set_serial </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">    </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">//set Serial for DFPlayer-mini mp3 module </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  mp3_set_volume </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">20</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> loop </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">        
+ delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">100</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">2</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">  </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Произрываем &quot;mp3/0002.mp3&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">5000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">5</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Произрываем &quot;mp3/0005.mp3&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">5000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">1</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Произрываем &quot;mp3/0001.mp3&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">5000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">4</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Произрываем &quot;mp3/0004.mp3&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">5000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ mp3_play </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">3</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// Произрываем &quot;mp3/0003.mp3&quot;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+ delay </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">5000</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span></pre>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span><strong>Полный список функций:</strong></span></span></span>
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li><strong> mp3_play (); </strong>// Запуск воспроизведения</li>
+	<li><strong>mp3_play (5);</strong>	// Воспроизвести файл &quot;mp3/0005.mp3&quot;</li>
+	<li><strong>mp3_next (); </strong>// Следующий трек</li>
+	<li><strong>mp3_prev (); </strong>// Предыдущий трек</li>
+	<li><strong> mp3_set_volume (uint16_t volume);</strong>	// Уровень громкости 0~30</li>
+	<li><strong>mp3_set_EQ ();</strong>	// Эквалайзер 0~5 (0 - Normal, 1 - Pop, 2 - Rock, 3 - Jazz, 4 - Classic, 5 - Bass)</li>
+	<li><strong>mp3_pause ();</strong> // пауза</li>
+	<li><strong> mp3_stop ();</strong> // остановить воспроизведение</li>
+	<li><strong>   mp3_random_play ();</strong> // Воспроизвести в случайнВоспроизвести в случайном порядке.</li>
+	<li><strong>void mp3_get_state ();</strong> 	//send get state command</li>
+	<li><strong> void mp3_get_volume ();</strong> </li>
+	<li><strong>void mp3_get_u_sum ();</strong> </li>
+	<li><strong>void mp3_get_tf_sum ();</strong> </li>
+	<li><strong>void mp3_get_flash_sum (); </strong></li>
+	<li><strong>void mp3_get_tf_current (); </strong></li>
+	<li><strong>void mp3_get_u_current (); </strong></li>
+	<li><strong>void mp3_get_flash_current (); </strong></li>
+	<li><strong>void mp3_single_loop (boolean state);</strong>	//set single loop </li>
+	<li><strong>void mp3_DAC (boolean state);</strong> </li>
+</ul>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><div></div></span></span>
+</p>
+<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Пример 2. Автономное управление без Arduino, с помощью  подключенных кнопок.</h4>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Данный модуль может работать как под управлением микроконтроллера Arduino, так и автономно, как самостоятельный проигрыватель mp3.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Но модулем нужно как-то управлять, регулировать громкость, переключать треки и тд. Эти возможности мы можем реализовать очень просто, нам нужно подключить управляющие кнопки, и с помощью них мы сможем полноценно управлять mp3 проигрывателем.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Есть несколько вариантов подключения:
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Простой способ (Минимум функций):</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><a href="http://iarduino.ru/img/upload/858d360edbfa6bb9cdeaab4d166dc877.jpg" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [16].png" type="image/png" data-filename="Image.png" alt="" style="margin-top:20px;margin-bottom:20px;border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);max-width:600px;width:550px;height:274px;"/></a>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Расширенный способ (Максимальный функционал):</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><a href="http://iarduino.ru/img/upload/7764ad374631e5a7c94f9b1fafdad5bc.jpg" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [17].png" type="image/png" data-filename="Image.png" alt="" style="margin-top:20px;margin-bottom:20px;border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);max-width:600px;width:600px;height:258.133px;"/></a>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><div></div>
+</p>
+				</div>
+				<div style="overflow-x:hidden;overflow-y:hidden;">
+									<div style="padding-top:5px;padding-bottom:5px;float:right;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;">
+
+
+
+<div style="height:22px;width:300px;"><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [18].png" type="image/png" data-filename="Image.png" height="22" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;overflow-x:hidden;overflow-y:hidden;" width="300"/></div>
+
+					</div>	
+				</div>
+			</div>
+<div style="overflow-x:hidden;overflow-y:hidden;">
+<h2 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;background-color:rgb(240, 242, 222);">Обсуждение</h2>
+		
+<div></div>
+
+
+</div>
+<div style="overflow-x:hidden;overflow-y:hidden;">
+<h2 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;background-color:rgb(240, 242, 222);">Присоединяйся</h2>
+
+<center style="margin-top:20px;margin-bottom:20px;">
+	<div style="height:150px;width:620px;background-image:url(&quot;http://vk.com/images/upload.gif&quot;);background-repeat:no-repeat;background-position:50% 50%;"></div>
+</center>
+
+</div>
+
+
+		<div>
+
+
+
+
+		    
+			 
+
+			<div style="margin-top:10px;margin-bottom:10px;padding-top:10px;padding-bottom:10px;background-color:rgb(255, 255, 255);">
+			
+			<h4 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-bottom:8px;border-bottom-width:3px;border-bottom-style:solid;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(253, 186, 23);color:rgb(51, 51, 51);">Коментарии могут оставлять только авторизованные пользователи.<div style="border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);"></div> <a href="http://iarduino.ru/lk/reg.php" style="text-decoration-line:none;">Авторизоваться на сайте</a></h4>
+			
+			</div>
+			
+						
+
+			
+			
+		</div>	
+<div>			
+	<h2 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;background-color:rgb(240, 242, 222);">Другие уроки</h2>
+	
+	
+	<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:20px;">
+		<li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-0-svetodiod/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок №0 Светодиод</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchaem-bh1750-datchik-osveschennosti-gy-30-gy-302-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключаем BH1750 датчик освещенности Gy-30,Gy-302 к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-1-reguliruem-dvumya-knopkami-yarkost-svetodioda/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок №1. Регулируем двумя кнопками яркость светодиода </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-6-arduino-schityvaem-metki-rfid-modul-rc522/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 6. Arduino считываем метки (RFID-модуль RC522) </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-2-podklyuchenie-lcd1602-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 2. Подключение LCD1602 к Ардуино </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-3-cifrovoe-upravlenie-yarkostyu-lcd1602-s-arduiny/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 3. Цифровое управление яркостью LCD1602 с Ардуины</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-4-podklyuchenie-lcd1602-po-i2c-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 4. Подключение LCD1602 по I2C к Ардуино</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-7-arduino-pogodnaya-stanciya-na-baze-barometra-bmp180-termometra-ds18b20/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 8. Arduino погодная станция на базе барометра BMP180 термометра DS18B20  </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-5-vyvodim-pokazaniya-potenciometra-na-lcd1602-po-i2c-s-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 5. Выводим показания потенциометра на LCD1602 по I2C с Ардуино</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/upravlenie-shagovym-dvigatelem-s-arduiny/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Управление шаговым двигателем с Ардуины</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/termometr-na-baze-ds18b20-i-oled-displeya-128x64/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 7. Термометр на базе DS18B20 и OLED дисплея 128X64 </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-8-russkiy-yazyk-na-oled-displee-128x64/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 9. Русский язык на OLED дисплее 128X64 </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/kontrol-dostupa-rfid-rc522-servo-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 10. Контроль доступа. RFID-rc522 + Servo + Arduino </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-11-podklyuchenie-giroskopa-gy-521-mpu-6050-k-arduio/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 11. Подключение гироскопа GY-521 MPU-6050 к Arduio.</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-12-upravlenie-servoprivodami-s-pomoschyu-giroskopa-mpu6050-gy-521/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 12. Управление сервоприводами с помощью гироскопа MPU6050 Gy-521</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-i-programmirovanie-digispark/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключение и программирование Digispark</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-13-podklyuchenie-klaviatury-4-4-i-pezoizluchatelya-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 13. Подключение клавиатуры 4*4 и пьезоизлучателя к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-14-muzaka-star-wars-na-arduino-rgb-svetomuzyka/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 14. Музыка Star Wars на Arduino  и RGB цветомузыка? Работа с tone();</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-neizvestnogo-displeya-md2072-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключение неизвестного дисплея Melodate MD-2072 к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/bluetooth-modul-hc-06-podklyuchenie-k-arduino-upravlenie-ustroystvami-s-telefona/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 15. Bluetooth модуль HC-06 подключение к Arduino. Управление устройствами с телефона.</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-datchika-dht11-k-arduino-uno-vyvodim-temperaturu-i-vlazhnost-na-lcd-1602-i2c-displey/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 16. Подключение датчика DHT11 к Arduino UNO. Выводим температуру и влажность на LCD 1602 I2C дисплей</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-17-podklyuchenie-mini-mp3-pleera-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 17. Подключение Mini MP3 плеера к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/upravlyaem-arduino-iz-php-cherez-com-port/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Управляем arduino из PHP через COM-порт</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/sborka-robota-manipulyatora-chast-1/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Сборка робота-манипулятора. Часть 1</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/sborka-robota-manipulyatora-chast-2-elektronika/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Сборка робота-манипулятора. Часть 2 (Электроника)</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-rtc-chasy-realnogo-vremeni-ds1302-ds1307-ds3231-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключение RTC часы реального времени DS1302, DS1307, DS3231 к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchaem-cvetnoy-displey-1-8-tft-ili9163-st7735r-sd-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключаем Цветной дисплей 1.8 TFT ILI9163/ST7735R   SD к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchaem-moduli-neopixel-na-baze-ws2812b-svetodiodov-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключаем модули NeoPixel на базе WS2812B светодиодов к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/nastroyka-bluetooth-moduley-hc-06-hc-05-ble4-0/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Настройка Bluetooth-модулей HC-06, HC-05, BLE4.0</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/sborka-robota-shassi-chast-1/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Сборка Робота-шасси. Часть 1</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-17-podklyuchenie-rtc-chasy-realnogo-vremeni-s-knopkami/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 18. Подключение RTC часы реального времени с кнопками</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-19-rtc-chasy-s-budilnikom/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 19. RTC часы с будильником</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-20-podklyuchenie-i-rabota-s-flesh-kartoy-na-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 20. Подключение и работа с флеш картой на Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-21-meteostanciya-s-sohraneniem-dannyh-na-flash-kartu/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 21. Метеостанция с сохранением данных на flash карту</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-22-avtomaticheskoe-upravlenie-svetom-bez-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 22. Автоматическое управление светом, без arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-23-opredelyaem-parametry-lamp-moschnost-osveschennost-mercanie/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 23. Определяем параметры ламп: мощность, освещенность, мерцание</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-24-uznaem-adresa-ustroystv-na-shine-i2c/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 24. Узнаём адреса устройств на шине I2C</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-25-distancionnoe-upravlenie-rgb-lentoy-s-ik-pulta/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 25. Дистанционное управление RGB лентой с ИК-пульта</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-26-1-soedinyaem-dve-arduino-po-shine-uart/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 26.1 Соединяем две arduino по шине UART</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-26-2-soedinyaem-dve-arduino-po-standartu-rs485/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 26.2 Соединяем две arduino по стандарту RS485</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-26-3-soedinyaem-dve-arduino-po-shine-i2c/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 26.3 Соединяем две arduino по шине I2C</a></li>		
+	</ul>
+</div>
+		
+		</div>
+	</div>
+	<a href="http://iarduino.ru/blog/add/new_post.php" style="color:rgb(255, 255, 255);text-decoration-color:rgb(255, 255, 255);text-decoration-line:none;margin-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(0, 152, 161);display:block;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow-x:hidden;overflow-y:hidden;">
+	<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [19].png" type="image/png" data-filename="Image.png" style="margin-top:10px;margin-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);float:left;display:block;"/>
+	<div style="margin-top:4px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);float:left;width:180px;">
+		<b style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);">Написать</b>
+		<div style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);font-size:10px;">Вы можете опубликовать ваши уроки и обзоры.</div>
+	</div>
+</a>
+	
+	<div style="margin-top:20px;padding-top:20px;padding-bottom:20px;border-top-width:1px;border-top-style:solid;border-top-color:rgb(231, 231, 231);width:960px;overflow-x:hidden;overflow-y:hidden;font-family:&quot;PT Sans Narrow&quot;,Arial,sans-serif;">
+		<a href="http://lesson.iarduino.ru/" style="text-decoration-line:none;">На главную</a>
+	
+	 
+	</div>
+	
+
+
+	<img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [20].png" type="image/png" data-filename="Image.png" height="1" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;position:absolute;height:1px;width:1px;top:-1000px;display:block;" width="1"/><img src="Урок 17. Подключение Mini MP3 плеера к Arduin_files/Image [21].png" type="image/png" data-filename="Image.png" height="150" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;position:absolute;top:-999px;left:-999px;visibility:hidden;display:block;" width="300"/></div></div></div></span>
+</div></body></html> 
