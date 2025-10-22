@@ -1,0 +1,310 @@
+<html>
+<head>
+  <title>Урок 15. Bluetooth модуль HC-06 подключение к Arduino. Управление устройствами с телефона. - Урок для Arduino</title>
+  <basefont face="Segoe UI" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="Evernote Windows/308555 (ru-RU, MWS); Windows/10.0.0 (Win64);"/>
+  <style>
+    body, td {
+      font-family: Segoe UI;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="117757"/>
+<h1>Урок 15. Bluetooth модуль HC-06 подключение к Arduino. Управление устройствами с телефона. - Урок для Arduino</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>Метки:</b></td><td><i>Ar_lesson, Bluetooth</i></td></tr>
+<tr><td><b>Источник:</b></td><td><a href="http://lesson.iarduino.ru/page/bluetooth-modul-hc-06-podklyuchenie-k-arduino-upravlenie-ustroystvami-s-telefona/"><i>http://lesson.iarduino.ru/page/bluetooth-modul-hc-06-podklyuchenie-k-arduino-upravlenie-ustroystvami-s-telefona/</i></a></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div style="position:relative;"><div>
+<div style="margin-top:0px;margin-bottom:0px;font-family:&quot;PT Sans Narrow&quot;,Arial,sans-serif;">
+<div style="border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(231, 231, 231);border-bottom-color:rgb(231, 231, 231);width:1264px;background-color:rgb(247, 246, 246);">
+		<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:0px;overflow-x:hidden;overflow-y:hidden;width:960px;">
+			<li style="float:left;list-style-type:none;"><a href="http://iarduino.ru/" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;"> Магазин</a></li>
+			<li style="float:left;list-style-type:none;"><a href="http://lesson.iarduino.ru/" style="color:rgb(102, 102, 102);text-decoration-color:rgb(102, 102, 102);text-decoration-line:none;border-bottom-width:4px;border-bottom-style:solid;border-top-color:rgb(102, 102, 102);border-bottom-color:rgb(103, 193, 148);line-height:37px;background-color:rgb(255, 255, 255);float:left;list-style-type:none;display:block;"><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image.png" type="image/png" data-filename="Image.png" style="margin-bottom:-5px;border-top-color:rgb(102, 102, 102);border-bottom-color:rgb(102, 102, 102);opacity:0.6;"/> Уроки</a></li>
+			<li style="float:left;list-style-type:none;"><a href="http://blog.iarduino.ru/" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;"> Блог</a></li>
+			<li style="float:left;list-style-type:none;"><a href="http://wiki.iarduino.ru/" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;"> WiKi</a></li>
+			
+						<li style="float:left;list-style-type:none;"><a href="http://www.youtube.com/channel/UCRfNkq8F8rxmDa3sPoEQv1w" style="color:rgb(51, 51, 51);text-decoration-color:rgb(51, 51, 51);text-decoration-line:none;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);float:left;list-style-type:none;line-height:40px;display:block;" target="_blank">Видео</a></li>
+		</ul>
+</div>
+	<div style="width:960px;overflow-x:hidden;overflow-y:hidden;font-family:&quot;PT Sans Narrow&quot;,Arial,sans-serif;">
+		<div style="text-align:center;">
+			<a href="http://lesson.iarduino.ru/" style="text-decoration-line:none;" title="Уроки arduino на iarduino.ru"><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [1].png" type="image/png" data-filename="Image.png" alt="Уроки arduino на iarduino.ru" style="border-top-color:rgb(0, 0, 238);border-bottom-color:rgb(0, 0, 238);text-align:center;height:200px;"/></a>
+		</div>
+	</div>
+		
+
+
+		
+
+	<div style="width:960px;overflow-x:hidden;overflow-y:hidden;">
+<h1 style="font-size:28px;font-weight:400;margin-block-start:;margin-block-end:;margin-top:10px;margin-bottom:10px;padding-top:13px;padding-bottom:13px;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(17, 17, 17);color:rgb(17, 17, 17);transition-duration:1s;z-index:-1;background-color:rgb(240, 242, 222);font-family:&quot;Roboto&quot;;">Урок 15. Bluetooth модуль HC-06 подключение к Arduino. Управление устройствами с телефона.</h1>
+	
+		<div style="font-family:Tahoma;float:left;width:250px;">
+			
+	
+		<div style="padding-top:10px;padding-bottom:10px;border-bottom-width:3px;border-bottom-style:solid;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(233, 151, 1);font-size:14px;font-weight:700;color:rgb(255, 255, 255);border-top-left-radius:5px;border-top-right-radius:5px;background-image:linear-gradient(35deg, rgb(255, 165, 0) 0%, rgb(229, 173, 36) 50%, rgb(240, 183, 44) 51%, rgb(244, 191, 63) 100%);">Необходимые детали</div>
+			<div style="background-color:rgb(237, 237, 228);overflow-x:hidden;overflow-y:hidden;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+				<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:10px;margin-bottom:10px;">
+					
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [2].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">890р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/arduino/arduino-uno-r3.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Arduino Uno R3 </a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [3].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">540р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Expansion-payments/hc-06-bluetooth.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить HC-06 Bluetooth </a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [4].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">350р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Istochniki-pitanija/istochnik-pitaniya-na-9v-1a.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Источник питания на 9В. 1А.</a>
+									</div>
+								</div>
+							</li>
+							
+							<li style="padding-top:7px;padding-bottom:7px;">
+								<div style="padding-top:8px;padding-bottom:8px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(218, 214, 206);border-bottom-color:rgb(218, 214, 206);background-color:rgb(255, 255, 255);">
+									<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [5].png" type="image/png" data-filename="Image.png" style="margin-bottom:-10px;max-width:80px;max-height:80px;"/>
+									<span style="border-top-color:rgb(122, 190, 105);border-bottom-color:rgb(122, 190, 105);font-size:22px;color:rgb(122, 190, 105);">179р.</span><div></div>
+									<div style="margin-top:10px;">
+										<a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-papa-mama-20sm.html" style="color:rgb(148, 132, 110);text-decoration-color:rgb(148, 132, 110);text-decoration-line:none;border-bottom-width:1px;border-bottom-style:dotted;border-top-color:rgb(148, 132, 110);border-bottom-color:rgb(0, 0, 0);font-family:sans-serif;font-size:14px;">Купить Набор проводов ПАПА-МАМА 20см</a>
+									</div>
+								</div>
+							</li>
+											
+				
+
+				</ul>
+			</div>
+			<div></div>
+
+						
+
+	</div>
+		
+	
+		<div style="position:relative;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;float:left;width:700px;background-color:rgb(247, 248, 248);">
+			<div style="margin-top:10px;margin-bottom:10px;overflow-x:hidden;overflow-y:hidden;position:relative;">		
+
+				<div style="padding-top:20px;padding-bottom:20px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(238, 238, 238);border-bottom-color:rgb(238, 238, 238);background-color:rgb(255, 255, 255);position:relative;overflow-x:auto;overflow-y:auto;font-family:Arial,Helvetica,Verdana,Tahoma,sans-serif;font-size:14px;line-height:22.4px;">		
+					<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Очень часто в ваших проектах возникает необходимость в дистанционном управлении или передачи данных с ваших телефонных гаджетов.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [6].png" type="image/png" data-filename="Image.png" height="480" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:600px;height:480px;" width="670"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><div></div>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Один из самых популярных и распространенных методов обмена данными посредством Bluetooth<strong>.</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Сегодня мы разберем простые примеры как можно подключить Bluetooth <span>модуль к Arduino и настроить дистанционное управление с телефона.</span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><strong>Нам понадобится:</strong></span>
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li><a href="http://iarduino.ru/shop/arduino/arduino-uno-r3.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino Uno R3</a><a href="http://iarduino.ru/shop/arduino/arduino-uno-r3.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);"></a></li>
+	<li><a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-papa-mama-20sm.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Набор проводов ПАПА-МАМА</a><span><a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-papa-mama-20sm.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);"></a><div></div></span></li>
+	<li><a href="http://iarduino.ru/shop/Expansion-payments/hc-06-bluetooth.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">HC-06 Bluetooth</a><span><a href="http://iarduino.ru/shop/Expansion-payments/hc-06-bluetooth.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);"></a><div></div></span></li>
+</ul>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Схема подключения <a href="http://iarduino.ru/shop/Expansion-payments/hc-06-bluetooth.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Bluetooth</a></strong><strong> к <a href="http://iarduino.ru/shop/arduino/" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Arduino</a>:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Подключать Bluetooth<span> модуль к микроконтроллеру Arduino удобнее всего с помощью <a href="http://iarduino.ru/shop/Provoda-kabeli/nabor-provodov-papa-mama-20sm.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">проводков ПАПА-МАМА</a>. </span>
+</p>
+<table style="border-collapse:collapse;margin-bottom:15px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;font-size:14px;line-height:22.4px;width:638px;">
+<thead>
+<tr>
+	<th style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(204, 204, 204);border-bottom-color:rgb(204, 204, 204);background-color:rgb(238, 238, 238);">Arduino
+	</th>
+	<th style="vertical-align:top;padding-top:5px;padding-bottom:5px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(204, 204, 204);border-bottom-color:rgb(204, 204, 204);background-color:rgb(238, 238, 238);">Bluetooth
+	</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Pin 1 (TX)
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">RXD
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">Pin 0 (RX)
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">TXD
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">GND
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">GND
+	</td>
+</tr>
+<tr>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);"> 5V
+	</td>
+	<td style="vertical-align:top;text-align:center;padding-top:5px;padding-bottom:5px;border-top-width:0px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(221, 221, 221);border-bottom-color:rgb(221, 221, 221);">VCC
+	</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Будьте внимательны, подключать подключать нужно <strong><em>TX</em></strong> -&gt; <strong><em>RXD</em></strong><span> ,<em><strong>RX</strong></em><span> -&gt;<span> <em><strong>TXD</strong></em>.</span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span>Теперь необходимо записать пробный код программы:</span></span></span>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><span><span><span>Во время загрузки скетча необходимо что бы Bluetooth модуль был отключен от микроконтроллера arduino. В противном случае скетч не запишется, потому что связь с Bluetooth <span>модулем происходит по одному и томуже порту RX и TX, что и USB.</span></span></span></span>
+</p>
+<pre style="font-family:Menlo,Monaco,monospace,sans-serif;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;padding-top:10px;padding-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(51, 51, 51);overflow-x:auto;overflow-y:auto;font-size:14px;line-height:22.4px;color:rgb(255, 255, 255);"><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">int</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> val</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">int</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> LED </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">=</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">13</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">;</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> setup</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  </span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">begin</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(205, 92, 92);border-bottom-color:rgb(205, 92, 92);color:rgb(205, 92, 92);">9600</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  pinMode</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">LED</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> OUTPUT</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  digitalWrite</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">LED</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> HIGH</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">void</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> loop</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">()</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  </span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">if</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">available</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">())</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    val </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">=</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(152, 251, 152);border-bottom-color:rgb(152, 251, 152);color:rgb(152, 251, 152);">Serial</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">.</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">read</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">();</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// При символе &quot;1&quot; включаем светодиод</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">if</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">val </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">==</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">'1'</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">)</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+      digitalWrite</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">LED</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> HIGH</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(135, 206, 235);border-bottom-color:rgb(135, 206, 235);color:rgb(135, 206, 235);">// При символе &quot;0&quot; выключаем светодиод</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(240, 230, 140);border-bottom-color:rgb(240, 230, 140);color:rgb(240, 230, 140);font-weight:700;">if</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> val </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">==</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> </span><span style="border-top-color:rgb(255, 160, 160);border-bottom-color:rgb(255, 160, 160);color:rgb(255, 160, 160);">'0'</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">)</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">{</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+      digitalWrite</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">(</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">LED</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">,</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);"> LOW</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">);</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+    </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+  </span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">
+</span><span style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);color:rgb(255, 255, 255);">}</span></pre><span><span></span></span>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Скачать скетч можно по <a href="http://iarduino.ru/file/222.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);">ссылке</a>.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">После того как скетч записан и Bluetooth <span>модуль подключен к Arduino, можно перейти к следующему шагу.</span>
+</p>
+<h5 style="font-size:16px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Подключение Bluetooth к телефону</h5>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Желательно в качестве источника питания для arduino использовать не USB, а внешний <a href="http://iarduino.ru/shop/Istochniki-pitanija/istochnik-pitaniya-na-9v-1a.html" style="color:rgb(17, 85, 204);text-decoration-color:rgb(17, 85, 204);border-top-color:rgb(17, 85, 204);border-bottom-color:rgb(17, 85, 204);" target="_blank">Блок питания на 9 В.</a>
+</p>
+<ol style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>Включаем Bluetooth на телефоне и ищем новые устройства</li>
+	<li>Находим в списке расстройств &quot;<strong><em>HC-06&quot; </em></strong> и подключаемся к нему. </li>
+	<li>Телефон спросит пин-код. необходимо ввести &quot;<strong><em>1234</em></strong>&quot; или &quot;<em><strong>0000</strong></em>&quot;</li>
+	<li>Ура. Устройство подключено.</li>
+</ol>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Теперь нужно скачать bluetooth terminal на ваш телефон. Мы рассмотрим на примере платформы Android.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [7].png" type="image/png" data-filename="Image.png" height="329" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:180px;height:329px;" width="180"/><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [8].png" type="image/png" data-filename="Image.png" height="329" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:184px;height:329px;" width="184"/><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [9].png" type="image/png" data-filename="Image.png" height="328" style="margin-top:20px;margin-bottom:20px;max-width:600px;width:186px;height:328px;" width="186"/>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Вы можете установить разные  bluetooth терминалы, как правило они отличаются только разными дизайнами, функционал от этого не меняется. Так же можно найти и терминал и для продуктов ios.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">После того как мы установили терминал, запускаем его выбираем наш bluetooth модуль HC-06 и подключаемся к нему.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Пришло время попробовать проект в деле. Пишем в терминале цифру &quot;0&quot; и отправляем. Светодиод L который находится на плате arduino рядом с pin 13, должен погаснуть. Теперь отправим через терминал цифру &quot;1&quot; и светодиод L должен зажечься.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Демонстрация работы:</strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>
+	<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [10].png" type="image/png" data-filename="Image.png" height="281" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;margin-bottom:15px;" width="500"/><div></div></strong>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Домашняя работа:</strong>
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>Изменить скетч так, что бы светодиод зажигался и потухал с помощью одной и той же команды например &quot;G&quot;.</li>
+	<li>Дописать скетч и научить его преобразовывать текстовые данные приходящие через блютус в цифровые и реализовать димер, зажигать светодиод с помощью ШИМ, на заданную яркость от 0 до 254 приходящую через bluetooth.</li>
+</ul>
+				</div>
+				<div style="overflow-x:hidden;overflow-y:hidden;">
+									<div style="padding-top:5px;padding-bottom:5px;float:right;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;">
+
+
+
+<div style="height:22px;width:300px;"><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [11].png" type="image/png" data-filename="Image.png" height="22" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;overflow-x:hidden;overflow-y:hidden;" width="300"/></div>
+
+					</div>	
+				</div>
+			</div>
+<div style="overflow-x:hidden;overflow-y:hidden;">
+<h2 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;background-color:rgb(240, 242, 222);">Обсуждение</h2>
+		
+<div></div>
+
+
+</div>
+<div style="overflow-x:hidden;overflow-y:hidden;">
+<h2 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;background-color:rgb(240, 242, 222);">Присоединяйся</h2>
+
+<center style="margin-top:20px;margin-bottom:20px;">
+	<div style="height:150px;width:620px;background-image:url(&quot;http://vk.com/images/upload.gif&quot;);background-repeat:no-repeat;background-position:50% 50%;"></div>
+</center>
+
+</div>
+
+
+		<div>
+
+
+
+
+		    
+			 
+
+			<div style="margin-top:10px;margin-bottom:10px;padding-top:10px;padding-bottom:10px;background-color:rgb(255, 255, 255);">
+			
+			<h4 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-bottom:8px;border-bottom-width:3px;border-bottom-style:solid;border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(253, 186, 23);color:rgb(51, 51, 51);">Коментарии могут оставлять только авторизованные пользователи.<div style="border-top-color:rgb(51, 51, 51);border-bottom-color:rgb(51, 51, 51);"></div> <a href="http://iarduino.ru/lk/reg.php" style="text-decoration-line:none;">Авторизоваться на сайте</a></h4>
+			
+			</div>
+			
+						
+
+			
+			
+		</div>	
+<div>			
+	<h2 style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:15px;background-color:rgb(240, 242, 222);">Другие уроки</h2>
+	
+	
+	<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:20px;">
+		<li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-0-svetodiod/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок №0 Светодиод</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchaem-bh1750-datchik-osveschennosti-gy-30-gy-302-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключаем BH1750 датчик освещенности Gy-30,Gy-302 к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-1-reguliruem-dvumya-knopkami-yarkost-svetodioda/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок №1. Регулируем двумя кнопками яркость светодиода </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-6-arduino-schityvaem-metki-rfid-modul-rc522/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 6. Arduino считываем метки (RFID-модуль RC522) </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-2-podklyuchenie-lcd1602-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 2. Подключение LCD1602 к Ардуино </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-3-cifrovoe-upravlenie-yarkostyu-lcd1602-s-arduiny/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 3. Цифровое управление яркостью LCD1602 с Ардуины</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-4-podklyuchenie-lcd1602-po-i2c-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 4. Подключение LCD1602 по I2C к Ардуино</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-7-arduino-pogodnaya-stanciya-na-baze-barometra-bmp180-termometra-ds18b20/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 8. Arduino погодная станция на базе барометра BMP180 термометра DS18B20  </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-5-vyvodim-pokazaniya-potenciometra-na-lcd1602-po-i2c-s-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 5. Выводим показания потенциометра на LCD1602 по I2C с Ардуино</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/upravlenie-shagovym-dvigatelem-s-arduiny/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Управление шаговым двигателем с Ардуины</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/termometr-na-baze-ds18b20-i-oled-displeya-128x64/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 7. Термометр на базе DS18B20 и OLED дисплея 128X64 </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-8-russkiy-yazyk-na-oled-displee-128x64/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 9. Русский язык на OLED дисплее 128X64 </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/kontrol-dostupa-rfid-rc522-servo-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 10. Контроль доступа. RFID-rc522 + Servo + Arduino </a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-11-podklyuchenie-giroskopa-gy-521-mpu-6050-k-arduio/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 11. Подключение гироскопа GY-521 MPU-6050 к Arduio.</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-12-upravlenie-servoprivodami-s-pomoschyu-giroskopa-mpu6050-gy-521/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 12. Управление сервоприводами с помощью гироскопа MPU6050 Gy-521</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-i-programmirovanie-digispark/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключение и программирование Digispark</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-13-podklyuchenie-klaviatury-4-4-i-pezoizluchatelya-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 13. Подключение клавиатуры 4*4 и пьезоизлучателя к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-14-muzaka-star-wars-na-arduino-rgb-svetomuzyka/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 14. Музыка Star Wars на Arduino  и RGB цветомузыка? Работа с tone();</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-neizvestnogo-displeya-md2072-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключение неизвестного дисплея Melodate MD-2072 к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/bluetooth-modul-hc-06-podklyuchenie-k-arduino-upravlenie-ustroystvami-s-telefona/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 15. Bluetooth модуль HC-06 подключение к Arduino. Управление устройствами с телефона.</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-datchika-dht11-k-arduino-uno-vyvodim-temperaturu-i-vlazhnost-na-lcd-1602-i2c-displey/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 16. Подключение датчика DHT11 к Arduino UNO. Выводим температуру и влажность на LCD 1602 I2C дисплей</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-17-podklyuchenie-mini-mp3-pleera-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 17. Подключение Mini MP3 плеера к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/upravlyaem-arduino-iz-php-cherez-com-port/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Управляем arduino из PHP через COM-порт</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/sborka-robota-manipulyatora-chast-1/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Сборка робота-манипулятора. Часть 1</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/sborka-robota-manipulyatora-chast-2-elektronika/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Сборка робота-манипулятора. Часть 2 (Электроника)</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchenie-rtc-chasy-realnogo-vremeni-ds1302-ds1307-ds3231-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключение RTC часы реального времени DS1302, DS1307, DS3231 к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchaem-cvetnoy-displey-1-8-tft-ili9163-st7735r-sd-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключаем Цветной дисплей 1.8 TFT ILI9163/ST7735R   SD к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/podklyuchaem-moduli-neopixel-na-baze-ws2812b-svetodiodov-k-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Подключаем модули NeoPixel на базе WS2812B светодиодов к Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/nastroyka-bluetooth-moduley-hc-06-hc-05-ble4-0/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Настройка Bluetooth-модулей HC-06, HC-05, BLE4.0</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/sborka-robota-shassi-chast-1/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Сборка Робота-шасси. Часть 1</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-17-podklyuchenie-rtc-chasy-realnogo-vremeni-s-knopkami/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 18. Подключение RTC часы реального времени с кнопками</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-19-rtc-chasy-s-budilnikom/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 19. RTC часы с будильником</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-20-podklyuchenie-i-rabota-s-flesh-kartoy-na-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 20. Подключение и работа с флеш картой на Arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-21-meteostanciya-s-sohraneniem-dannyh-na-flash-kartu/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 21. Метеостанция с сохранением данных на flash карту</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-22-avtomaticheskoe-upravlenie-svetom-bez-arduino/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 22. Автоматическое управление светом, без arduino</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-23-opredelyaem-parametry-lamp-moschnost-osveschennost-mercanie/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 23. Определяем параметры ламп: мощность, освещенность, мерцание</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-24-uznaem-adresa-ustroystv-na-shine-i2c/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 24. Узнаём адреса устройств на шине I2C</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-25-distancionnoe-upravlenie-rgb-lentoy-s-ik-pulta/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 25. Дистанционное управление RGB лентой с ИК-пульта</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-26-1-soedinyaem-dve-arduino-po-shine-uart/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 26.1 Соединяем две arduino по шине UART</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-26-2-soedinyaem-dve-arduino-po-standartu-rs485/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 26.2 Соединяем две arduino по стандарту RS485</a></li><li style="margin-top:5px;"><a href="http://lesson.iarduino.ru/page/urok-26-3-soedinyaem-dve-arduino-po-shine-i2c/" style="color:rgb(17, 17, 17);text-decoration-color:rgb(17, 17, 17);text-decoration-line:none;border-bottom-width:2px;border-bottom-style:solid;border-top-color:rgb(17, 17, 17);border-bottom-color:rgb(233, 151, 1);font-weight:700;">Урок 26.3 Соединяем две arduino по шине I2C</a></li>		
+	</ul>
+</div>
+		
+		</div>
+	</div>
+	<a href="http://iarduino.ru/blog/add/new_post.php" style="color:rgb(255, 255, 255);text-decoration-color:rgb(255, 255, 255);text-decoration-line:none;margin-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);background-color:rgb(0, 152, 161);display:block;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow-x:hidden;overflow-y:hidden;">
+	<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [12].png" type="image/png" data-filename="Image.png" style="margin-top:10px;margin-bottom:10px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);float:left;display:block;"/>
+	<div style="margin-top:4px;border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);float:left;width:180px;">
+		<b style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);">Написать</b>
+		<div style="border-top-color:rgb(255, 255, 255);border-bottom-color:rgb(255, 255, 255);font-size:10px;">Вы можете опубликовать ваши уроки и обзоры.</div>
+	</div>
+</a>
+	
+	<div style="margin-top:20px;padding-top:20px;padding-bottom:20px;border-top-width:1px;border-top-style:solid;border-top-color:rgb(231, 231, 231);width:960px;overflow-x:hidden;overflow-y:hidden;font-family:&quot;PT Sans Narrow&quot;,Arial,sans-serif;">
+		<a href="http://lesson.iarduino.ru/" style="text-decoration-line:none;">На главную</a>
+	
+	 
+	</div>
+	
+
+
+	<img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [13].png" type="image/png" data-filename="Image.png" height="1" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;position:absolute;height:1px;width:1px;top:-1000px;display:block;" width="1"/><img src="Урок 15. Bluetooth модуль HC-06 подключение к_files/Image [14].png" type="image/png" data-filename="Image.png" height="150" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;position:absolute;top:-999px;left:-999px;visibility:hidden;display:block;" width="300"/></div></div></div></span>
+</div></body></html> 

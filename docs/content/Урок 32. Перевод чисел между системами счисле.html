@@ -1,0 +1,122 @@
+<html>
+<head>
+  <title>Урок 32. Перевод чисел между системами счисления - Урок для Arduino</title>
+  <basefont face="Segoe UI" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="Evernote Windows/308555 (ru-RU, MWS); Windows/10.0.0 (Win64);"/>
+  <style>
+    body, td {
+      font-family: Segoe UI;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="139981"/>
+<h1>Урок 32. Перевод чисел между системами счисления - Урок для Arduino</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>Метки:</b></td><td><i>Library</i></td></tr>
+<tr><td><b>Источник:</b></td><td><a href="https://lesson.iarduino.ru/page/perevod-chisel-mezhdu-sistemami-schisleniya/"><i>https://lesson.iarduino.ru/page/perevod-chisel-mezhdu-sistemami-schisleniya/</i></a></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div style="position:relative;"><div style="padding-top:20px;padding-bottom:20px;border-top-width:1px;border-bottom-width:1px;border-top-style:solid;border-bottom-style:solid;border-top-color:rgb(238, 238, 238);border-bottom-color:rgb(238, 238, 238);background-color:rgb(255, 255, 255);position:relative;overflow-x:auto;overflow-y:auto;font-family:Arial,Helvetica,Verdana,Tahoma,sans-serif;font-size:14px;line-height:22.4px;">		
+					<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">
+<img src="Урок 32. Перевод чисел между системами счисле_files/Image.png" type="image/png" data-filename="Image.png" height="281" style="border-top-width:0px;border-bottom-width:0px;border-top-style:none;border-bottom-style:none;margin-bottom:15px;" width="500"/></h4>
+<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Общие сведения:</h4>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">При программировании мы часто сталкиваемся с необходимостью перевода чисел между системами счисления, по основанию: 2, 4, 8, 16 и 10.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Основание системы счисления</strong> указывает какое количество цифр используется в этой системе для написания чисел:
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>Привычная нам система счисления по основанию 10 (десятичная система счисления) использует 10 цифр: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. После 9 идёт не цифра, а число 10, состоящее из двух цифр: 1 и 0. Таким образом, мы записываем любые числа, используя указанные цифры в определённой последовательности.</li>
+	<li>Система счисления по основанию 2 (двоичная система счисления) использует 2 цифры: 0, 1.</li>
+	<li>Система счисления по основанию 4 (четверичная система счисления) использует 4 цифры: 0, 1, 2, 3.</li>
+	<li>Система счисления по основанию 8 (восьмеричная система счисления) использует 8 цифр: 0, 1, 2, 3, 4, 5, 6, 7.</li>
+	<li>Система счисления по основанию 16 (шестнадцатеричная система счисления) использует 16 цифр: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F. В данном случае, буквы ABCDEF являются цифрами. Цифра A шестнадцатеричной системы, равна числу 10 десятичной системы, цифра B равна числу 11 десятичной системы, ... , цифра F равна числу 15 десятичной системы.</li>
+</ul>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Можно использовать любую систему счисления, например по основанию 12 (счет дюжинами), но наиболее популярными при программировании, являются: десятичная, шестнадцатеричная и двоичная, системы счисления.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Все выше перечисленные системы счисления относятся к позиционным системам. Значение числа зависит не только от того из каких цифр оно состоит, но и в какой последовательности они записаны. Например число 1234 не равно числу 4321.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Методы представления чисел</strong> в разных системах счисления:
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>двоичная система счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li><strong>(10101)</strong><sub style="font-size:11px;line-height:14px;"><strong>2</strong></sub> - математическое представление (число)<sub style="font-size:11px;line-height:14px;">основание системы</sub></li>
+		<li><strong>0b10101</strong> - представление в скетчах Arduino IDE (число записывается с ведущими символами &quot;0b&quot;).</li>
+		<li><strong>B10101</strong> - представление в скетчах Arduino IDE (число до 256 записывается с ведущим символом &quot;B&quot;).</li>
+	</ul></li>
+	<li>восьмеричная система счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li><strong>(10101)</strong><sub style="font-size:11px;line-height:14px;"><strong>8</strong></sub> - математическое представление (число)<sub style="font-size:11px;line-height:14px;">основание системы</sub></li>
+		<li><strong>010101</strong> - представление в скетчах Arduino IDE (число записывается с ведущим символом &quot;0&quot; ноль).</li>
+	</ul></li>
+	<li>десятичная система счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li><strong>(10101)</strong><sub style="font-size:11px;line-height:14px;"><strong>10</strong></sub> - математическое представление (число)<sub style="font-size:11px;line-height:14px;">основание системы</sub></li>
+		<li> <strong>10101 </strong>- представление в скетчах Arduino IDE (число записывается как есть без ведущих символов)</li>
+	</ul></li>
+	<li>шестнадцатеричная система счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li><strong>(10101)</strong><sub style="font-size:11px;line-height:14px;"><strong>16</strong></sub> - математическое представление (число)<sub style="font-size:11px;line-height:14px;">основание системы</sub></li>
+		<li> <strong>0x10101</strong> - представление в скетчах Arduino IDE (число записывается с ведущими символами &quot;0x&quot;).</li>
+	</ul></li>
+</ul>
+<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Перевод чисел в десятичную систему счисления:
+</h4>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Для перевода числа из любой системы счисления в десятичную нужно сложить все цифры этого числа, предварительно умножив каждое из них на основание системы счисления, из которой производится перевод, возведя её в степень соответствующую позиции цифры в числе:
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Σ(цифра_числа * основание_системы <sup style="font-size:11px;line-height:14px;">позиция_цифры</sup>)</strong><div></div>
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Примеры </strong>перевода чисел в десятичную систему счисления:
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>(<strong>101011</strong>)<sub style="font-size:11px;line-height:14px;">2</sub> = <strong>1</strong>*2<sup style="font-size:11px;line-height:14px;">5</sup> + <strong>0</strong>*2<sup style="font-size:11px;line-height:14px;">4</sup> + <strong>1</strong>*2<sup style="font-size:11px;line-height:14px;">3</sup> + <strong>0</strong>*2<sup style="font-size:11px;line-height:14px;">2</sup> + <strong>1</strong>*2<sup style="font-size:11px;line-height:14px;">1</sup> + <strong>1</strong>*2<sup style="font-size:11px;line-height:14px;">0</sup> = 32+0+8+0+2+1 = (43)<sub style="font-size:11px;line-height:14px;">10</sub>.</li>
+	<li>(<strong>1357</strong>)<sub style="font-size:11px;line-height:14px;">8</sub> = <strong>1</strong>*8<sup style="font-size:11px;line-height:14px;">3</sup> + <strong>3</strong>*8<sup style="font-size:11px;line-height:14px;">2</sup> + <strong>5</strong>*8<sup style="font-size:11px;line-height:14px;">1</sup> + <strong>7</strong>*8<sup style="font-size:11px;line-height:14px;">0</sup> = 512+192+40+7 = (751)<sub style="font-size:11px;line-height:14px;">10</sub>.</li>
+	<li>(<strong>3BC9</strong>)<sub style="font-size:11px;line-height:14px;">16</sub> = <strong>3</strong>*16<sup style="font-size:11px;line-height:14px;">3</sup> + <strong>B</strong>*16<sup style="font-size:11px;line-height:14px;">2</sup> + <strong>C</strong>*16<sup style="font-size:11px;line-height:14px;">1</sup> + <strong>9</strong>*16<sup style="font-size:11px;line-height:14px;">0</sup> = <strong>3</strong>*16<sup style="font-size:11px;line-height:14px;">3</sup> + <strong>11</strong>*16<sup style="font-size:11px;line-height:14px;">2</sup> + <strong>12</strong>*16<sup style="font-size:11px;line-height:14px;">1</sup> + <strong>9</strong>*16<sup style="font-size:11px;line-height:14px;">0</sup> = 12288+2816+192+9 = (15305)<sub style="font-size:11px;line-height:14px;">10</sub>.</li>
+</ul>
+<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Перевод чисел из десятичной системы счисления:
+</h4>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Для перевода чисел из десятичной системы счисления в любую другую, необходимо целочисленно делить переводимое число на основание той системы, в которую мы хотим его перевести, до тех пор пока результат целочисленного деления не станет равен 0. Результатом перевода будут цифры остатка от каждого деления, в обратном порядке.
+</p>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;"><strong>Примеры </strong>перевода чисел из десятичной системы счисления:
+</p>
+<ul style="margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">
+	<li>(43)<sub style="font-size:11px;line-height:14px;">10</sub> перевести в двоичную систему счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li>43/2 = 21 и <strong>1</strong> в остатке</li>
+		<li>21/2 = 10 и <strong>1</strong> в остатке</li>
+		<li>10/2 = 5 и <strong>0</strong> в остатке</li>
+		<li>5/2 = 2 и <strong>1</strong> в остатке</li>
+		<li>2/2 = 1 и <strong>0</strong> в остатке</li>
+		<li>1/2 = 0 и <strong>1</strong> в остатке</li>
+		<li>результат - цифры остатков в обратном порядке = (<strong>101011</strong>)<sub style="font-size:11px;line-height:14px;">2</sub></li>
+	</ul></li>
+	<li>(751)<sub style="font-size:11px;line-height:14px;">10</sub> перевести в восьмеричную систему счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li>751/8 = 93 и <strong>7</strong> в остатке</li>
+		<li>93/8 = 11 и <strong>5</strong> в остатке</li>
+		<li>11/8 = 1 и <strong>3</strong> в остатке</li>
+		<li>1/8 = 0 и <strong>1</strong> в остатке</li>
+		<li>результат - цифры остатков в обратном порядке = (<strong>1357</strong>)<sub style="font-size:11px;line-height:14px;">8</sub></li>
+	</ul></li>
+	<li>(15305)<sub style="font-size:11px;line-height:14px;">10</sub> перевести в шестнадцатеричную систему счисления:
+	<ul style="list-style-type:circle;margin-block-start:;margin-block-end:;padding-inline-start:;margin-top:2px;margin-bottom:2px;font-size:14px;line-height:22.4px;">
+		<li>15305/16 = 956 и <strong>9</strong> в остатке</li>
+		<li>956/16 = 59 и <strong>12</strong> в остатке - соответствует цифре (<strong>C</strong>)<sub style="font-size:11px;line-height:14px;">16</sub></li>
+		<li>59/16 = 3 и <strong>11</strong> в остатке - соответствует цифре (<strong>B</strong>)<sub style="font-size:11px;line-height:14px;">16</sub></li>
+		<li>3/16 = 0 и <strong>3</strong> в остатке</li>
+		<li>результат - цифры остатков в обратном порядке = (<strong>3BC9</strong>)<sub style="font-size:11px;line-height:14px;">16</sub></li>
+	</ul></li>
+</ul>
+<h4 style="font-size:18px;margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:0px;">Простой метод перевода:
+</h4>
+<p style="margin-block-start:;margin-block-end:;margin-top:0px;margin-bottom:15px;font-size:14px;line-height:22.4px;">Легче всего переводить числа через двоичную систему счисления. О том как это сделать рассказано в нашем видеоуроке.
+</p>
+				</div></div></span>
+</div></body></html> 
