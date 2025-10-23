@@ -4,7 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arduino Education</title>
-<link rel="stylesheet" href="assets/css/main.css?v=3">
+<link rel="stylesheet" href="assets/css/main.css">
+  <script>
+  // добавляет дату как версию, чтобы сбрасывать кэш при каждом обновлении
+  (function() {
+    const link = document.querySelector('link[href*="main.css"]');
+    if (link) {
+      const today = new Date();
+      const ver = today.getFullYear() + '' + (today.getMonth()+1) + '' + today.getDate();
+      link.href = link.href + '?v=' + ver;
+    }
+  })();
+</script>
 </head>
 <body>
 <header>
